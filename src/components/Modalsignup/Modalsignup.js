@@ -19,7 +19,7 @@ const Modalsignup = ({ login, setLogin, setUser }) => {
                 confirm: confirm,
             };
             const response = await axios.post(
-                `http://localhost:4001/user/signup`,
+                `https://marvelbackendinthone.herokuapp.com/user/signup`,
                 user
             );
 

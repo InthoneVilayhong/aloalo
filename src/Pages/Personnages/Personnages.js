@@ -31,8 +31,8 @@ const Personnages = ({ perso, setperso }) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    // `https://marvelbackendinthone.herokuapp.com/characters/?name=${name}&skip=${skip}`
-                    `http://localhost:4001/characters?name=${name}&skip=${skip}`
+                    `https://marvelbackendinthone.herokuapp.com/characters/?name=${name}&skip=${skip}`
+                    // `http://localhost:4001/characters?name=${name}&skip=${skip}`
                 );
                 setData(response.data);
                 setpageLimit(

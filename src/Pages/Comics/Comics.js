@@ -15,8 +15,8 @@ const Comics = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    // `https://marvelbackendinthone.herokuapp.com/comics/?title=${title}&skip=${skip}`
-                    `http://localhost:4001/comics/?title=${title}&skip=${skip}`
+                    `https://marvelbackendinthone.herokuapp.com/comics/?title=${title}&skip=${skip}`
+                    // `http://localhost:4001/comics/?title=${title}&skip=${skip}`
                 );
                 setData(response.data);
                 setpageLimit(
