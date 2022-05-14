@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 const Favoris = ({ perso }) => {
     //     const test = JSON.parse(Cookies.get("test"));
