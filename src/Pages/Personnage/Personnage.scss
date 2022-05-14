@@ -1,0 +1,79 @@
+.container-perso {
+    width: 1200px;
+    margin: 0 auto;
+    font-family: "Roboto Condensed", sans-serif;
+
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .container-top-perso {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // border: 1px solid red;
+        height: 400px;
+        background-color: #151515;
+        padding: 3rem;
+        margin: 1rem 0;
+    }
+
+    .img-left-perso {
+        height: 100%;
+        width: 40%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+
+    .img-right-perso {
+        // border: fuchsia 2px solid;
+        height: 100%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h2 {
+            color: #f2f2f2;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        p {
+            color: gray;
+        }
+    }
+}
+
+.container-comics-perso {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .container-comic-perso {
+        // border: 2px green solid;
+        width: 20%;
+        height: 360px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #151515;
+        padding-top: 0.5rem;
+        margin: 1rem;
+        h3 {
+            color: #f2f2f2;
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+            height: 90%;
+            object-fit: cover top;
+            border-top: solid 1px rgb(180, 180, 180);
+        }
+    }
+}
