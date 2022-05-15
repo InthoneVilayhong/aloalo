@@ -18,7 +18,8 @@ const Comics = ({ comicFavoris, setComicFavoris }) => {
             newFavoris.push(comic);
             setComicFavoris(newFavoris);
             const response = await axios.post(
-                "http://localhost:4001/comics/favoris/post",
+                // "http://localhost:4001/comics/favoris/post",
+                `https://marvelbackendinthone.herokuapp.com/comics/favoris/post`,
                 comic
             );
             console.log("toDb", response.data);
@@ -32,7 +33,8 @@ const Comics = ({ comicFavoris, setComicFavoris }) => {
     const deleteFavoriComics = async (comic) => {
         try {
             const response = await axios.post(
-                "http://localhost:4001/comics/favoris/delete",
+                // "http://localhost:4001/comics/favoris/delete",
+                `https://marvelbackendinthone.herokuapp.com/comics/favoris/delete`,
                 comic
             );
             console.log("toDb", response.data);
