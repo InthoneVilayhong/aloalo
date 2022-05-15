@@ -72,14 +72,14 @@ const Modalsignup = ({ login, setLogin, setUser }) => {
                         placeholder="Ton nom de super héro"
                     />
                     <input
-                        type="text"
+                        type="password"
                         name="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Mot de passe "
                     />
                     <input
-                        type="text"
+                        type="password"
                         name="confirmpassword"
                         value={confirm}
                         onChange={(e) => setConfirm(e.target.value)}
