@@ -19,6 +19,7 @@ function App() {
     const [login, setLogin] = useState(false);
     const [token, setToken] = useState(Cookies.get("userToken") || null);
     const [showlogin, setShowlogin] = useState(false);
+    const [comicFavoris, setComicFavoris] = useState([]);
 
     //! setUser function is used to create account, login & disconnect
     const setUser = (token) => {
@@ -29,7 +30,6 @@ function App() {
         }
         setToken(token);
     };
-    console.log(token);
 
     return (
         <Router>
@@ -60,16 +60,32 @@ function App() {
                 login={login}
                 setLogin={setLogin}
                 setShowlogin={setShowlogin}
+                token={token}
+                setUser={setUser}
             />
 
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route
                     path="/personnages"
-                    element={<Personnages perso={perso} setperso={setperso} />}
+                    element={
+                        <Personnages
+                            perso={perso}
+                            setperso={setperso}
+                            token={token}
+                        />
+                    }
                 />
                 <Route path="/personnage/:id" element={<Personnage />} />
-                <Route path="/comics" element={<Comics />} />
+                <Route
+                    path="/comics"
+                    element={
+                        <Comics
+                            comicFavoris={comicFavoris}
+                            setComicFavoris={setComicFavoris}
+                        />
+                    }
+                />
                 <Route path="/favoris" element={<Favoris perso={perso} />} />
             </Routes>
             <Footer />

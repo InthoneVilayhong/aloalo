@@ -2,13 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 h1 {
     font-family: "Roboto Condensed", sans-serif;
 }
 
 #container-page {
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
     font-family: "Roboto Condensed", sans-serif;
     // border: 1px solid blue;

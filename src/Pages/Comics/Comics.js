@@ -3,13 +3,49 @@ import axios from "axios";
 import "./Comics.scss";
 import Pagination from "../../components/Pagination/Pagination";
 
-const Comics = () => {
+const Comics = ({ comicFavoris, setComicFavoris }) => {
     const [data, setData] = useState(); //! Request State
     const [isLoading, setIsLoading] = useState(true); //! Request State
     const [title, setTitle] = useState("");
     const [skip, setSkip] = useState(0);
     const [page, setPage] = useState(1);
     const [pageLimit, setpageLimit] = useState();
+    // const [disable, setDisable] = useState(false);
+    //! add favori comics
+    const fetchFavoriComics = async (comic) => {
+        try {
+            const newFavoris = [...comicFavoris];
+            newFavoris.push(comic);
+            setComicFavoris(newFavoris);
+            const response = await axios.post(
+                "http://localhost:4001/comics/favoris/post",
+                comic
+            );
+            console.log("toDb", response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    //!remove favori comics
+
+    const deleteFavoriComics = async (comic) => {
+        try {
+            const response = await axios.post(
+                "http://localhost:4001/comics/favoris/delete",
+                comic
+            );
+            console.log("toDb", response.data);
+
+            const newFavoris = [...comicFavoris];
+
+            let result = newFavoris.filter((fav) => fav._id !== comic._id);
+            setComicFavoris(result);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+    ///////////////////////////////////////////////////////////////
 
     useEffect(() => {
         const fetchData = async () => {
@@ -59,6 +95,23 @@ const Comics = () => {
                 {data.results.map((comic, index) => {
                     return (
                         <div className="container-comics-page" key={index}>
+                            <button
+                                // disabled={disable}
+                                onClick={() => {
+                                    fetchFavoriComics(comic);
+                                    // setDisable(true);
+                                }}
+                            >
+                                add
+                            </button>
+
+                            <button
+                                onClick={() => {
+                                    deleteFavoriComics(comic);
+                                }}
+                            >
+                                remove
+                            </button>
                             <div>
                                 <img
                                     src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}

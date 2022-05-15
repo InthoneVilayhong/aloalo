@@ -3,9 +3,9 @@ import axios from "axios";
 import "./Personnages.scss";
 import { Link } from "react-router-dom";
 import Pagination from "../../components/Pagination/Pagination";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
-const Personnages = ({ perso, setperso }) => {
+const Personnages = ({ perso, setperso, token }) => {
     const [data, setData] = useState(); //! Request State
     const [isLoading, setIsLoading] = useState(true); //! Request State
     const [name, setName] = useState("");
@@ -14,15 +14,26 @@ const Personnages = ({ perso, setperso }) => {
     const [pageLimit, setpageLimit] = useState();
 
     const handleClickAdd = async (personnage) => {
-        const newArray = [...perso];
-        if (newArray.indexOf(personnage) === -1) {
-            newArray.push(personnage);
-            await setperso(newArray);
-            Cookies.set("test", JSON.stringify(perso));
+        try {
+            const newArray = [...perso];
+            if (newArray.indexOf(personnage) === -1) {
+                newArray.push(personnage);
+                await setperso(newArray);
+                // Cookies.set("test", JSON.stringify(perso));
+            }
+
+            const response = await axios.post(
+                "http://localhost:4001/comics/favori/post",
+                personnage
+            );
+            console.log("toDb", response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log(error.message);
         }
     };
 
-    const handleClickRemove = (personnage) => {
+    const handleClickRemove = async (personnage) => {
         const newArray = perso.filter((item) => item._id !== personnage._id);
         setperso(newArray);
     };

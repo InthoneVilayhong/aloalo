@@ -2,7 +2,7 @@ import logomarvel from "../../assets/logomarvel.png";
 import "./Header.scss";
 import { Link } from "react-router-dom";
 
-const Header = ({ login, setLogin, setShowlogin }) => {
+const Header = ({ login, setLogin, setShowlogin, token, setUser }) => {
     const HandleClick = () => {
         setLogin(true);
         setShowlogin(false);
@@ -26,17 +26,26 @@ const Header = ({ login, setLogin, setShowlogin }) => {
                             />
                         </Link>
                     </div>
-                    <div className="btn-login-container">
-                        <button
-                            className="btn-login"
-                            onClick={HandleClickLogin}
-                        >
-                            Se Connecter
-                        </button>
-                        <button className="btn-login" onClick={HandleClick}>
-                            Rejoins nous
-                        </button>
-                    </div>
+                    {!token ? (
+                        <div className="btn-login-container">
+                            <button
+                                className="btn-login"
+                                onClick={HandleClickLogin}
+                            >
+                                Se Connecter
+                            </button>
+                            <button className="btn-login" onClick={HandleClick}>
+                                Rejoins nous
+                            </button>
+                        </div>
+                    ) : (
+                        <div>
+                            <button onClick={() => setUser(null)}>
+                                Se deconnecter
+                            </button>
+                        </div>
+                    )}
+
                     <div className="container-btn-nav">
                         <Link to="/comics">
                             <button>Comics</button>
