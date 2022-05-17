@@ -1,14 +1,38 @@
 // import Cookies from "js-cookie";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Favoris = ({ perso }) => {
-    //     const test = JSON.parse(Cookies.get("test"));
+const Favoris = ({ token }) => {
+    const [data, setData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:4001/comics/favoris/get`,
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`,
+                            "Content-Type": "multipart/form-data",
+                        },
+                    }
+                );
+                setData(response.data);
+                setIsLoading(false);
+            } catch (error) {
+                console.log(error.message);
+            }
+        };
+        fetchData();
+    }, [token]);
 
-    // console.log(test);
-    return (
+    return isLoading ? (
+        <div>Very Slow ... </div>
+    ) : (
         <div>
-            {/* {test.map((element) => {
-                return <div>{element.name} </div>;
-            })} */}
+            {data.map((comic, index) => {
+                return <span key={index}>{comic.title}</span>;
+            })}
         </div>
     );
 };

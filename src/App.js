@@ -86,7 +86,7 @@ function App() {
                         />
                     }
                 />
-                <Route path="/favoris" element={<Favoris perso={perso} />} />
+                <Route path="/favoris" element={<Favoris token={token} />} />
             </Routes>
             <Footer />
         </Router>
